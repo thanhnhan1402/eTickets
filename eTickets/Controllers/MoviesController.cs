@@ -14,7 +14,7 @@ public class MoviesController : Controller
     }
     public async Task<IActionResult> Index()
     {
-        var actors = await _context.Movies.ToListAsync();
-        return View();
+        var movies = await _context.Movies.Include(c => c.Cinema).ToListAsync();
+        return View(movies);
     }
 }
